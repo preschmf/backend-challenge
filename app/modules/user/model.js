@@ -20,7 +20,12 @@ class UserModel extends Model {
         index: {
           unique: true
         }
-      }
+      },
+      notes: [{
+        type: String,
+        ref: 'Notes',
+        required: false
+      }],
     }
   }
 }
