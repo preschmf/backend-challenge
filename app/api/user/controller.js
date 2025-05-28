@@ -16,7 +16,7 @@ exports.read = async (req, res) => {
  * @method update
  */
 exports.update = async (req, res) => {
-  const user = await userService.findOneAndUpdate({_id: req.params.id}, req.body)
+  const user = await userService.findByIdAndUpdate(req.params.id, req.body)
   if (!user) {
     return res.status(404).send({message: 'User not found'})
   }
