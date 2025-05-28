@@ -34,6 +34,9 @@ exports.readNotes = async (req, res) => {
   const notes = user.notes || []
 
   const notesDetails = await notesService.find({_id: {$in: notes}})
+  if (!notesDetails || notesDetails.length === 0) {
+    return res.status(404).send({message: `No notes exist for user: ${req.params.id}`})
+  }
 
   res.status(200).send(notesDetails)
 }

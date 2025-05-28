@@ -28,13 +28,14 @@ describe('api', () => {
         return agent.client().put(`/user/${invalidUserId}`).set('authorization', globalAuth.token).expect(403).promise()
       })
 
-      it('should add user', async () => {
+      it('should successfully add user and update user', async () => {
         const mockBody = {
           firstName: 'Jane',
           lastName: 'Doe',
           email: `${mockData.uuid()}@test.com`
         }
 
+        //Add user
         const user = await agent
           .client()
           .put(`/user/${globalAuth.user}`)
@@ -50,6 +51,7 @@ describe('api', () => {
           lastName: 'Smith'
         }
 
+        //Update user
         const updatedUser = await agent
           .client()
           .put(`/user/${globalAuth.user}`)
